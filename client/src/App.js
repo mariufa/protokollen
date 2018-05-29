@@ -21,6 +21,8 @@ const AppTitle = styled.h1`
 
 import RequireAuth from './User/RequireAuth';
 
+import RequireAuth from './User/RequireAuth';
+
 class App extends Component {
 
   RequireAuth = (Component, changeState) => {

@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import AuthComponent from './User/AuthComponent';
 import RequireAuth from './User/RequireAuth';
 
+import Protocols from './Protocols/Protocols';
+
 
 const AppBase = styled.div`
   text-align: center;
@@ -32,6 +34,7 @@ class App extends Component {
           </AppHeader>
           <Switch>
             <Route exact path='/login' component={AuthComponent} />
+            <Route exact path='/protocols' component={Protocols}/>
           </Switch>
         </AppBase>
       </Router>

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import styled from 'styled-components';
 import AuthComponent from './User/AuthComponent';
+import RequireAuth from './User/RequireAuth';
+
 
 const AppBase = styled.div`
   text-align: center;
@@ -19,36 +21,7 @@ const AppTitle = styled.h1`
 `;
 
 
-import RequireAuth from './User/RequireAuth';
-
-import RequireAuth from './User/RequireAuth';
-
 class App extends Component {
-
-  RequireAuth = (Component, changeState) => {
-
-    return class RequireAuth extends Component {
-      constructor(props) {
-        super(props);
-        this.changeState = changeState;
-      }
-
-      componentDidMount() {
-        console.log("Checking auth");
-        const getToken = localStorage.getItem('token');
-        if (!getToken) {
-          this.changeState(false);
-          this.props.history.replace({ pathname: '/login' });
-        } else {
-          this.changeState(true);
-        }
-      }
-      render() {
-        return <Component {...this.props} />
-      }
-    }
-
-  }
 
   render() {
     return (

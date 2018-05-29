@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-RequireAuth = (Component, setLoginState) => {
+const RequireAuth = (Component, setLoginState) => {
     return class RequireAuth extends Component {
         constructor(props) {
             super(props);

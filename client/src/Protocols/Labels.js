@@ -14,12 +14,21 @@ const LabelName = styled.div`
     border-radius: 5px;
 `;
 
-const Labels = ({ labels }) => {
+const Icon = styled.span`
+    margin-left: 10px;
+`;
+
+const Labels = ({ labels, removable }) => {
     return (
         <LabelsBox>
             {labels.map(label =>
                 <LabelName key={label._id}>
                     {label.name}
+                    {removable && 
+                    <Icon>
+                        <i className="fa fa-times" aria-hidden="true"></i>
+                    </Icon>
+                    }
                 </LabelName>
             )}
         </LabelsBox>

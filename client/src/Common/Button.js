@@ -11,5 +11,4 @@ export const CommonButton = styled.button`
     color: midnightblue;
     outline: none;
     font-size: 1.0em;
-    width:10%;
 `;

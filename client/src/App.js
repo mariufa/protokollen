@@ -7,7 +7,6 @@ import RequireAuth from './User/RequireAuth';
 import Protocols from './Protocols/Protocols';
 import Protocol from './Protocols/Protocol';
 
-
 const AppBase = styled.div`
   text-align: center;
 `;
@@ -22,7 +21,6 @@ const AppHeader = styled.header`
 const AppTitle = styled.h1`
   font-size: 1.5em;
 `;
-
 
 class App extends Component {
 

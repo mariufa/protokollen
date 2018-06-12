@@ -3,25 +3,10 @@ import styled from 'styled-components';
 
 import Labels from './Labels';
 import Actions from './Actions';
+import HorizontalDivider from '../Common/Divider';
+import { TableEntry, TextBox } from '../Common/TextCommons';
+import Page from '../Common/Page';
 
-const TableEntry = styled.div`
-    width: 40%
-    padding: 10px;
-    margin 10px auto;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    cursor: pointer;
-`;
-
-const HorizontalDivider = styled.div`
-    width: 100%;
-    padding: 1px;
-    background-color: #eee;
-`;
-
-const TextBox = styled.p`
-    overflow-wrap: break-word;
-`;
 
 class Protocols extends Component {
 
@@ -73,7 +58,7 @@ class Protocols extends Component {
     render() {
         const { protocols } = this.state;
         return (
-            <div>
+            <Page>
                 <Actions/>
                 {protocols.map(element =>
                     <TableEntry key={element._id}>
@@ -84,7 +69,7 @@ class Protocols extends Component {
                         <Labels labels={element.labels} />
                     </TableEntry>
                 )}
-            </div>
+            </Page>
         );
     }
 }

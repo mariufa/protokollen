@@ -1,22 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-const CreateButton = styled.button`
-    padding: 10px;
-    margin: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    border: 1px solid;
-    background-color: inherit;
-    color: midnightblue;
-    outline: none;
-    font-size: 1.0em;
-    width:10%;
-`;
-
-const ButtonBox = styled.div`
-    width: 100%;
-`;
+import Labels from './Labels';
+import Actions from './Actions';
 
 const TableEntry = styled.div`
     width: 40%
@@ -37,28 +23,67 @@ const TextBox = styled.p`
     overflow-wrap: break-word;
 `;
 
-const LabelsBox = styled.div`
-`;
-
 class Protocols extends Component {
+
+    state = {
+        protocols: []
+    }
+
+    componentDidMount = () => {
+        this.getProtocols();
+    }
+
+    getMockData = () => {
+        const p1 = {
+            _id: "1",
+            text: "hei hå test blalsls",
+            labels: [
+                {
+                    _id: 1,
+                    name: "label A"
+                },
+                {
+                    _id: 2,
+                    name: "label B"
+                }
+            ]
+        }
+        const p2 = {
+            _id: "2",
+            text: "Marius morn du der uute i skogen",
+            labels: [
+                {
+                    _id: 3,
+                    name: "label c"
+                },
+                {
+                    _id: 2,
+                    name: "label B"
+                }
+            ]
+        }
+        return [p1, p2];
+    }
+
+    getProtocols = () => {
+        const protocols = this.getMockData();
+        this.setState({ protocols: protocols });
+    }
+
     render() {
+        const { protocols } = this.state;
         return (
             <div>
-                <ButtonBox>
-                    <CreateButton>Submit</CreateButton>
-                    <CreateButton>Search</CreateButton>
-                </ButtonBox>
-                <TableEntry>
-                    <TextBox>
-                        text info. alkfjaslfj sajj klfajl sjøkfjaflksj flsjk lfjalslj dflkjsjkldj jksl
-                        sfslkjfjjsldklfkjsf
-                        sfklsljfksjkdllfkjskjsljjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj skjlfsjd
-                    </TextBox>
-                    <HorizontalDivider/>
-                    <div>
-                        lables
-                    </div>
-                </TableEntry>
+                <Actions/>
+                {protocols.map(element =>
+                    <TableEntry key={element._id}>
+                        <TextBox>
+                            {element.text}
+                        </TextBox>
+                        <HorizontalDivider />
+                        <Labels labels={element.labels} />
+                    </TableEntry>
+                )}
             </div>
         );
     }

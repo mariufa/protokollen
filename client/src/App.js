@@ -5,6 +5,7 @@ import AuthComponent from './User/AuthComponent';
 import RequireAuth from './User/RequireAuth';
 
 import Protocols from './Protocols/Protocols';
+import Protocol from './Protocols/Protocol';
 
 
 const AppBase = styled.div`
@@ -35,6 +36,7 @@ class App extends Component {
           <Switch>
             <Route exact path='/login' component={AuthComponent} />
             <Route exact path='/protocols' component={Protocols}/>
+            <Route exact path='/protocols/:id' component={Protocol}/>
           </Switch>
         </AppBase>
       </Router>

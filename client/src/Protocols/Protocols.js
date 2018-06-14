@@ -12,7 +12,7 @@ class Protocols extends Component {
 
     state = {
         protocols: []
-    }
+    };
 
     componentDidMount = () => {
         this.getProtocols();
@@ -55,13 +55,18 @@ class Protocols extends Component {
         this.setState({ protocols: protocols });
     }
 
+    onProtocol = (event, id) => {
+        const protocolID = event.target.id;
+        window.location = `/protocols/${protocolID}`;
+    }
+
     render() {
         const { protocols } = this.state;
         return (
             <Page>
                 <Actions/>
                 {protocols.map(element =>
-                    <TableEntry key={element._id}>
+                    <TableEntry id={element._id} onClick={this.onProtocol} key={element._id}>
                         <TextBox>
                             {element.text}
                         </TextBox>

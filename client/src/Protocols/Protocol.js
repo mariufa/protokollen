@@ -7,6 +7,23 @@ import { TableEntry, TextBox } from '../Common/TextCommons';
 import { CommonButton } from '../Common/Button';
 import Page from '../Common/Page';
 
+const TextArea = styled.textarea`
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    outline: none;
+    resize: none;
+`;
+
+const SaveBox = styled.div`
+    width: 100%;
+    display: inline-block;
+`;
+
+const SaveButton = CommonButton.extend`
+    float:right
+`;
+
 class Protocol extends Component {
 
     state = {
@@ -62,24 +79,51 @@ class Protocol extends Component {
 
     componentDidMount = () => {
         const id = this.props.match.params.id;
-        console.log(id);
         const protocol = this.getMockData(id);
         const comments = this.getMockComments(id);
         this.setState({...protocol, comments: comments});
     }
 
+    onClickText = () => {
+        if (this.state.textEditable === false) {
+            this.setState({textEditable: true});
+        }
+    }
+
+    onClickLabels = () => {
+        this.setState({removable: !this.state.removable});
+    }
+
+    onClickSaveText = () => {
+        // put api
+        this.setState({textEditable: false});
+    }
+
+    onChangeTextArea = (e) => {
+        this.setState({text: e.target.value});
+    }
+
     render() {
-        const { text, labels } = this.state;
-        console.log(labels)
+        const { text, labels, textEditable } = this.state;
         return (
             <Page>
-                <TableEntry>
-                    <TextBox>
-                        {text}
-                    </TextBox>
+                <TableEntry onClick={this.onClickText}>
+                    {!textEditable &&
+                        <TextBox>
+                            {text}
+                        </TextBox>
+                    }
+                    {textEditable &&
+                        <div>
+                            <TextArea value={text} onChange={this.onChangeTextArea} wrap="off" rows="3" />
+                            <SaveBox>
+                                <SaveButton onClick={this.onClickSaveText}>Save</SaveButton>
+                            </SaveBox>
+                        </div>
+                    }
                 </TableEntry>
                 <HorizontalDivider/>
-                <TableEntry>
+                <TableEntry onClick={this.onClickLabels}>
                     <Labels labels={labels} removable={this.state.removable}/>
                 </TableEntry>
                 <HorizontalDivider/>

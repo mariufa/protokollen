@@ -104,7 +104,7 @@ class Protocol extends Component {
     this.setState({ text: e.target.value });
   };
 
-  addLabel = labelText => {
+  addLabel = (labelText) => {
     if (labelText && labelText.length > 0) {
       let labels = this.state.labels;
       const newLabel = {
@@ -115,6 +115,19 @@ class Protocol extends Component {
       this.setState({ labels: labels });
     }
   };
+
+  removeLabel = (labelId) => {
+      console.log("hei");
+      let idxToRemove = -1;
+      let labels = this.state.labels;
+      labels.forEach(label => {
+          if (label._id ===labelId) {
+              idxToRemove = label._id;
+          }
+      })
+      labels.splice(idxToRemove,1);
+      this.setState({labels: labels});
+  }
 
   render() {
     const { text, labels, textEditable } = this.state;
@@ -138,7 +151,7 @@ class Protocol extends Component {
         </TableEntry>
         <HorizontalDivider />
         <TableEntry onClick={this.onClickLabels}>
-          <Labels labels={labels} editable={true} addLabel={this.addLabel} />
+          <Labels labels={labels} editable={true} addLabel={this.addLabel} removeLabel={this.removeLabel} />
         </TableEntry>
         <HorizontalDivider />
         <CommonButton>Comments</CommonButton>

@@ -11,7 +11,7 @@ var express = require('express'),
 
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/Protokollendb');
+mongoose.connect('mongodb://localhost/Protokollendb', { useNewUrlParser: true });
 
 
 app.use(bodyParser.urlencoded({ extended: true }));

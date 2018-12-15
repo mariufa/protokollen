@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
-import { HashRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import styled from 'styled-components';
 import AuthComponent from './User/AuthComponent';
+import RequireAuth from './User/RequireAuth';
+
+import Protocols from './Protocols/Protocols';
+import Protocol from './Protocols/Protocol';
 
 const AppBase = styled.div`
   text-align: center;
@@ -18,33 +22,7 @@ const AppTitle = styled.h1`
   font-size: 1.5em;
 `;
 
-
 class App extends Component {
-
-  RequireAuth = (Component, changeState) => {
-
-    return class RequireAuth extends Component {
-      constructor(props) {
-        super(props);
-        this.changeState = changeState;
-      }
-
-      componentDidMount() {
-        console.log("Checking auth");
-        const getToken = localStorage.getItem('token');
-        if (!getToken) {
-          this.changeState(false);
-          this.props.history.replace({ pathname: '/login' });
-        } else {
-          this.changeState(true);
-        }
-      }
-      render() {
-        return <Component {...this.props} />
-      }
-    }
-
-  }
 
   render() {
     return (
@@ -55,6 +33,8 @@ class App extends Component {
           </AppHeader>
           <Switch>
             <Route exact path='/login' component={AuthComponent} />
+            <Route exact path='/protocols' component={Protocols}/>
+            <Route exact path='/protocols/:id' component={Protocol}/>
           </Switch>
         </AppBase>
       </Router>

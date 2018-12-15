@@ -6,6 +6,7 @@ var express = require('express'),
     cors = require('cors'),
     jwt = require('jsonwebtoken'),
     User = require('./api/models/user.server.model'),
+    Protocol = require('./api/models/protocol.server.model'),
     bodyParser = require('body-parser');
 
 
@@ -32,6 +33,8 @@ app.use(function (req, res, next) {
 
 var userRoutes = require('./api/routes/user.server.routes');
 userRoutes(app);
+var protocolRoutes = require('./api/routes/protocol.server.routes');
+protocolRoutes(app);
 
 
 app.listen(port);

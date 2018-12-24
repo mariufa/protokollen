@@ -1,20 +1,17 @@
 import React, { Component } from 'react';
 
-const RequireAuth = (Component, setLoginState) => {
+const RequireAuth = (Component) => {
     return class RequireAuth extends Component {
+
         constructor(props) {
             super(props);
-            this.setLoginState = setLoginState;
         }
 
-        componentDidMount() {
+        componentWillMount() {
             const token = localStorage.getItem('token');
-            if (token) {
-                this.setLoginState(true);
-            } else {
-                this.setLoginState(false);
+            if (!token) {
                 this.props.history.replace({ pathname: '/login' });
-            }
+            } 
         }
         render() {
             return <Component {...this.props} />

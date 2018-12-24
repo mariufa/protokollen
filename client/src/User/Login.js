@@ -39,12 +39,25 @@ class Login extends Component {
         this.setState({[name] : value});
     }
 
+    onLogin = () => {
+        fetch('/api/auth/signIn', {
+            method: 'post',
+            headers: {'Content-Type' : 'application/json'},
+            body: {
+                'username': this.state.username,
+                'password': this.state.password
+            }
+        }).then(results => {
+            console.log(results)
+        });
+    }
+
     render() {
         return(
             <div>
                 <Input name="username" type="text" autoFocus placeholder="Username" onChange={this.onChange}/>
                 <Input name="password" type="password" placeholder="Password" onChange={this.onChange}/>
-                <LoginButton>Login</LoginButton>
+                <LoginButton onClick={this.onLogin}>Login</LoginButton>
             </div>
         );
     }

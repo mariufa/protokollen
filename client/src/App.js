@@ -33,8 +33,8 @@ class App extends Component {
           </AppHeader>
           <Switch>
             <Route exact path='/login' component={AuthComponent} />
-            <Route exact path='/protocols' component={Protocols}/>
-            <Route exact path='/protocols/:id' component={Protocol}/>
+            <Route exact path='/' component={RequireAuth(Protocols)}/>
+            <Route exact path='/:id' component={RequireAuth(Protocol)}/>
           </Switch>
         </AppBase>
       </Router>

@@ -42,7 +42,6 @@ class LabelItem extends Component {
   }
 
   render() {
-      console.log("morn")
     return (
       <LabelName>
         {this.state.name}
